@@ -1,0 +1,44 @@
+platform:
+  name: JiraDa
+  github_project: https://github.com/users/gnemet/projects/2
+  project_id: "PVT_kwHOAFp6lc4BQZAh"
+
+repos:
+  aichat:
+    url: https://github.com/gnemet/aichat.git
+    language: go
+    description: Standalone AI chat module (RAG, MCP pipeline)
+
+  jiramntr:
+    url: https://github.com/gnemet/jiramntr.git
+    language: go
+    description: JIRA DWH monitor server (ETL, KPI, BI dashboards)
+
+  johanna:
+    url: https://github.com/gnemet/johanna.git
+    language: go
+    description: AI persona chat assistant
+
+  datagrid:
+    url: https://github.com/gnemet/datagrid.git
+    language: go
+    description: Dynamic data grid and pivot tables
+
+  lookin:
+    url: https://github.com/gnemet/lookin.git
+    language: html
+    description: Architecture viewer (Mermaid diagrams, drill-down)
+
+  mcp-forge:
+    url: https://github.com/gnemet/mcp-forge.git
+    language: python
+    description: MCP chain generator and RAG catalog builder
+
+servers:
+  butalam:
+    host: sys-butalam.alig.hu
+    services: [jiramntr, johanna, mcp-forge, datagrid, lookin]
+
+  gpu01:
+    host: sys-gpu01.alig.hu
+    services: [jiramntr]

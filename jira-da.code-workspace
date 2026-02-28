@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {"name": "🏠 jira-da", "path": "."},
+    {"name": "💬 aichat", "path": "../aichat"},
+    {"name": "📊 jiramntr", "path": "../jiramntr"},
+    {"name": "🤖 johanna", "path": "../johanna"},
+    {"name": "📋 datagrid", "path": "../datagrid"},
+    {"name": "🔍 lookin", "path": "../lookin"},
+    {"name": "🔧 mcp-forge", "path": "../mcp-forge"}
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/node_modules": true
+    }
+  }
+}
