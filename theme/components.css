@@ -1,0 +1,201 @@
+/* ═══════════════════════════════════════════════════════════
+   jira-da-theme / components.css
+   Shared UI components: buttons, badges, cards, tables
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Buttons ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #1e1e2e;
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: #fff;
+    border-color: var(--danger-color);
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-ghost {
+    background: transparent;
+    border-color: transparent;
+}
+
+.btn-ghost:hover {
+    background: var(--bg-card);
+}
+
+/* ── Badges ── */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.badge-success {
+    background: rgba(166, 227, 161, 0.15);
+    color: var(--success-color);
+}
+
+.badge-danger {
+    background: rgba(243, 139, 168, 0.15);
+    color: var(--danger-color);
+}
+
+.badge-warning {
+    background: rgba(249, 226, 175, 0.15);
+    color: var(--warning-color);
+}
+
+.badge-info {
+    background: rgba(137, 180, 250, 0.15);
+    color: var(--info-color);
+}
+
+.badge-neutral {
+    background: var(--neutral-bg);
+    color: var(--neutral-color);
+}
+
+/* ── Cards ── */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow);
+}
+
+/* ── Glass Card ── */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* ── Data Tables ── */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.data-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+}
+
+.data-table tr:hover td {
+    background: var(--bg-card-hover);
+}
+
+/* ── Status Dots ── */
+.state-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-muted);
+}
+
+.state-dot.state-new {
+    background: var(--info-color);
+}
+
+.state-dot.state-pass,
+.state-dot.state-success {
+    background: var(--success-color);
+}
+
+.state-dot.state-fail,
+.state-dot.state-error {
+    background: var(--danger-color);
+}
+
+.state-dot.state-reviewing {
+    background: var(--warning-color);
+}
+
+/* ── Empty State ── */
+.empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ── Section Header ── */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 12px;
+}
+
+.section-count {
+    background: var(--primary-color);
+    color: #1e1e2e;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}

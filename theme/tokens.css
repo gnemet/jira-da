@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════════════
+   jira-da-theme / tokens.css
+   Design tokens for all JIRA-DA projects
+   Source of truth: johanna/ui/static/css/base.css
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Catppuccin Mocha Palette ── */
+:root {
+    --ctp-base: #1e1e2e;
+    --ctp-mantle: #181825;
+    --ctp-crust: #11111b;
+    --ctp-surface0: #313244;
+    --ctp-surface1: #45475a;
+    --ctp-surface2: #585b70;
+    --ctp-overlay0: #6c7086;
+    --ctp-overlay1: #7f849c;
+    --ctp-subtext0: #a6adc8;
+    --ctp-subtext1: #bac2de;
+    --ctp-text: #cdd6f4;
+    --ctp-rosewater: #f5e0dc;
+    --ctp-flamingo: #f2cdcd;
+    --ctp-pink: #f5c2e7;
+    --ctp-mauve: #cba6f7;
+    --ctp-red: #f38ba8;
+    --ctp-maroon: #eba0ac;
+    --ctp-peach: #fab387;
+    --ctp-yellow: #f9e2af;
+    --ctp-green: #a6e3a1;
+    --ctp-teal: #94e2d5;
+    --ctp-sky: #89dcfe;
+    --ctp-sapphire: #74c7ec;
+    --ctp-blue: #89b4fa;
+    --ctp-lavender: #b4befe;
+
+    /* ── Semantic Colors (Dark — default) ── */
+    --bg-color: var(--ctp-base);
+    --bg-alt: var(--ctp-mantle);
+    --bg-card: var(--ctp-surface0);
+    --bg-card-hover: var(--ctp-surface1);
+    --bg-input: #24273a;
+    --text-main: var(--ctp-text);
+    --text-muted: var(--ctp-overlay1);
+    --text-subtle: var(--ctp-subtext0);
+    --border-color: var(--ctp-surface1);
+
+    --primary-color: var(--ctp-blue);
+    --primary-rgb: 137, 180, 250;
+    --secondary-color: var(--ctp-surface1);
+    --secondary-rgb: 69, 71, 90;
+    --accent-color: var(--ctp-pink);
+
+    --success-color: var(--ctp-green);
+    --danger-color: #e94560;
+    --danger-rgb: 233, 69, 96;
+    --warning-color: var(--ctp-yellow);
+    --info-color: var(--ctp-blue);
+
+    /* ── Feature Colors ── */
+    --mcp-color: var(--ctp-teal);
+    --mcp-rgb: 148, 226, 213;
+    --mcp-bg: rgba(var(--mcp-rgb), 0.1);
+    --mcp-bg-hover: rgba(var(--mcp-rgb), 0.2);
+    --mcp-border: rgba(var(--mcp-rgb), 0.3);
+
+    --persona-color: var(--ctp-pink);
+    --persona-rgb: 245, 194, 231;
+    --persona-bg: rgba(var(--persona-rgb), 0.1);
+    --persona-bg-hover: rgba(var(--persona-rgb), 0.2);
+    --persona-border: rgba(var(--persona-rgb), 0.2);
+
+    --agent-color: var(--ctp-yellow);
+    --agent-rgb: 249, 226, 175;
+    --agent-bg: rgba(var(--agent-rgb), 0.1);
+    --agent-bg-hover: rgba(var(--agent-rgb), 0.2);
+    --agent-border: rgba(var(--agent-rgb), 0.3);
+
+    --neutral-bg: var(--ctp-surface1);
+    --neutral-bg-hover: var(--ctp-surface2);
+    --neutral-border: var(--ctp-surface2);
+    --neutral-color: #9399b2;
+
+    /* ── Glass / Window ── */
+    --glass-bg: rgba(30, 30, 46, 0.85);
+    --glass-blur: 12px;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --window-border: 1px solid rgba(var(--primary-rgb), 0.2);
+    --window-glow: 0 0 20px rgba(var(--primary-rgb), 0.1), 0 0 40px rgba(var(--primary-rgb), 0.05);
+    --container-bg-rgb: 30, 30, 46;
+    --container-bg: rgba(var(--container-bg-rgb), 0.7);
+
+    /* ── Bubbles (chat) ── */
+    --bubble-ai: rgba(255, 255, 255, 0.05);
+    --bubble-user: rgba(var(--primary-rgb), 0.1);
+
+    /* ── Context Menu ── */
+    --menu-bg: #1c2128;
+    --menu-border: rgba(243, 188, 9, 0.4);
+    --menu-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+    /* ── Layout ── */
+    --header-h: 44px;
+    --footer-h: 0px;
+    --sidebar-w: 48px;
+    --sidebar-w-expanded: 180px;
+    --radius: 8px;
+    --radius-sm: 4px;
+    --radius-md: 12px;
+
+    /* ── KPI Palette ── */
+    --kpi-exceptional: #3A7D66;
+    --kpi-good: #8AB08E;
+    --kpi-neutral: #E3D8BA;
+    --kpi-neutral-text: #C4B48A;
+    --kpi-warning: #DC9E62;
+    --kpi-critical: #C05746;
+
+    /* ── Tech Brand Colors ── */
+    --tech-pg: #336791;
+    --tech-go: #00add8;
+    --tech-oracle: #e67e22;
+    --tech-ai: #9b59b6;
+    --tech-ldap: #e74c3c;
+    --tech-etl: #1abc9c;
+    --tech-js: #f0db4f;
+    --tech-css: #264de4;
+    --tech-jira: #3d72d7;
+
+    color-scheme: dark;
+}
+
+/* ── Light Theme Override ── */
+body.light-theme,
+[data-theme="light"] {
+    --bg-color: #f1f1f1;
+    --bg-alt: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0f0f0;
+    --bg-input: #e6e9ef;
+    --text-main: #4c4f69;
+    --text-muted: #6c7086;
+    --text-subtle: #8c8fa1;
+    --border-color: #dfe6e9;
+
+    --danger-color: #d20f39;
+    --neutral-bg: #e6e9ef;
+    --neutral-bg-hover: #ccd0da;
+    --neutral-border: #ccd0da;
+    --neutral-color: #5c5f77;
+
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.03);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --window-border: 1px solid rgba(0, 0, 0, 0.05);
+    --window-glow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --container-bg: #ffffff;
+
+    --bubble-ai: rgba(0, 0, 0, 0.03);
+    --bubble-user: rgba(137, 180, 250, 0.1);
+
+    --mcp-rgb: 0, 95, 95;
+    --mcp-color: #005f5f;
+    --mcp-bg: rgba(var(--mcp-rgb), 0.05);
+    --mcp-bg-hover: rgba(var(--mcp-rgb), 0.1);
+    --mcp-border: rgba(var(--mcp-rgb), 0.2);
+
+    --persona-rgb: 157, 27, 125;
+    --persona-color: #9d1b7d;
+    --persona-bg: rgba(var(--persona-rgb), 0.05);
+    --persona-bg-hover: rgba(var(--persona-rgb), 0.1);
+    --persona-border: rgba(var(--persona-rgb), 0.2);
+
+    --agent-rgb: 180, 130, 20;
+    --agent-color: #b48214;
+    --agent-bg: rgba(var(--agent-rgb), 0.05);
+    --agent-bg-hover: rgba(var(--agent-rgb), 0.1);
+    --agent-border: rgba(var(--agent-rgb), 0.2);
+
+    --menu-bg: #ffffff;
+    --menu-border: rgba(0, 0, 0, 0.1);
+    --menu-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    color-scheme: light;
+}
