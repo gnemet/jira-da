@@ -126,6 +126,17 @@
     --tech-css: #264de4;
     --tech-jira: #3d72d7;
 
+    /* ── Semantic Datagrid Tokens ── */
+    --dg-surface: var(--ctp-base);
+    --dg-surface-alt: var(--ctp-mantle);
+    --dg-border: var(--ctp-surface1);
+    --dg-hover: var(--ctp-surface0);
+    --dg-text: var(--ctp-text);
+    --dg-text-muted: var(--ctp-subtext0);
+    --dg-accent: var(--ctp-blue);
+    --dg-accent-hover: var(--ctp-sapphire);
+    --dg-radius: var(--radius-sm);
+
     color-scheme: dark;
 }
 
@@ -179,6 +190,16 @@ body.light-theme,
     --menu-bg: #ffffff;
     --menu-border: rgba(0, 0, 0, 0.1);
     --menu-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    /* ── Semantic Datagrid Tokens (Light) ── */
+    --dg-surface: #ffffff;
+    --dg-surface-alt: #f1f1f1;
+    --dg-border: #dfe6e9;
+    --dg-hover: #f8fafc;
+    --dg-text: #4c4f69;
+    --dg-text-muted: #8c8fa1;
+    --dg-accent: #1e66f5;
+    --dg-accent-hover: #209fb5;
 
     color-scheme: light;
 }
