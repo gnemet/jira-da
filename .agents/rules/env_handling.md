@@ -1,78 +1,22 @@
-# Environment Handling Rules (Shared)
+# Environmental Variable Handling & Security Rule
 
-## The Full Lifecycle
+To ensure the highest security profile for this application, development and operations must **never** specify or calculate default fallbacks containing passwords, API keys, or standard infrastructure configuration.
 
-```
-Developer Machine:
-  1. Create/edit opt/envs/.env_<hostname>          ← plaintext, NEVER committed
-  2. ./scripts/vault.sh lock <hostname>            ← creates .env_<hostname>.gpg
-  3. git add opt/envs/.env_<hostname>.gpg           ← GPG committed to GitHub
-  4. ./scripts/switch_env.sh <hostname>            ← copies plaintext → root .env
+This means the application **must fail fast** and loud if it boots missing the required credentials, instead of defaulting to a known (and easily guessable) path or password.
 
-New Machine / Clone:
-  1. git clone (gets .gpg files)
-  2. ./scripts/vault.sh unlock <hostname>          ← restores plaintext from .gpg
-  3. ./scripts/switch_env.sh <hostname>            ← copies plaintext → root .env
+## Mandatory Rules
+1. **No Hardcoded Passwords**: Strings like `soa123`, `Jira_1234`, or `root` must never be hardcoded into tools, scripts, test files, or `.go` files.
+2. **No `viper.SetDefault` for sensitive info**: Do not use `SetDefault` for ports, hosts, passwords, or usernames in configuration parsers.
+3. **No `os.environ.get('KEY', 'fallback')`**: Python scripts should use `os.environ.get('KEY')` alone, compute if any required variable is `None`, and `sys.exit(1)` immediately if missing.
+4. **No Shell Default Expansions**: Avoid `export PGPASSWORD=${PGPASSWORD:-soa123}` in bash scripts. Required variables must be explicitly asserted:
+   ```bash
+   if [[ -z "${PGPASSWORD}" ]]; then
+       echo "Error: PGPASSWORD environment variable is required."
+       exit 1
+   fi
+   ```
+5. **No fallback Struct Population**: Do not manually copy values from one struct to another as a fallback mechanism for configuration, such as pointing a read-only DB connection to the primary DB connection if the RO ENV variables are missing. Require the operator to explicitly define them.
 
-Prod / Test Server:
-  → Only root .env exists (manually placed or deployed)
-  → opt/envs/ does NOT exist, is NEVER deployed
-```
-
-## 1. Runtime: Only Root `.env`
-- Application code MUST only read from the **root `.env`** (and optionally `config.yaml` / `envcfg.yaml`).
-- **NEVER** reference `opt/envs/` in application code, Go handlers, or Python scripts.
-- `opt/envs/` is a **local development tool** — it does NOT exist in prod/test.
-
-## 2. Direct Modification Forbidden (Dev)
-- On developer machines, **NEVER** edit root `.env` directly for persistent changes.
-- Root `.env` is ephemeral — overwritten by `switch_env.sh`.
-- Temporary edits acceptable ONLY for one-off debugging.
-
-## 3. Vault Workflow (GPG)
-- **Lock** (encrypt): `./scripts/vault.sh lock <hostname>` → creates `.gpg`
-- **Unlock** (decrypt): `./scripts/vault.sh unlock <hostname>` → restores plaintext
-- **Verify**: `./scripts/vault.sh verify <hostname>` → SHA256 comparison
-- **Diff**: `./scripts/vault.sh diff <hostname>` → show changes
-- **Status**: `./scripts/vault.sh status <hostname>` → check if re-lock needed
-- Vault password: `VAULT_PASS` env var or `~/.vault_pass` file
-
-## 4. `.gitignore` Pattern (Mandatory)
-```gitignore
-# Plaintext env files: NEVER committed
-.env*
-**/.env*
-!**/*.gpg
-
-# opt/envs: only .gpg files committed
-opt/**
-!opt/**/
-!*.gpg
-
-# Vault password: NEVER committed
-.vault_pass
-```
-
-## 5. Switching Environments
-```bash
-./scripts/switch_env.sh <hostname>    # explicit
-./scripts/switch_env.sh               # auto-detect from hostname
-```
-
-### Standard Environment Postfixes
-Postfixes MUST match the **actual hostname** for auto-detect to work:
-
-| Postfix | Machine | Type |
-|---|---|---|
-| `IT-2057` | Desktop dev | dev |
-| `zenbook` | Private dev | dev |
-| `butalam` | Production server | prod |
-| `sys-gpu01` | GPU server | prod |
-
-Example: `.env_IT-2057`, `.env_butalam`, `envcfg_zenbook.yaml`
-
-## 6. No Hardcoding (Zero Defaults)
-- **NEVER** hardcode env var values or fallback defaults in code.
-- **NEVER** use `getEnvOrDefault(...)` — fail clearly when missing.
-- Use cascade pattern if needed: `RAG_PG_HOST → PG_HOST → fail`.
-- Fixed data (company name, etc.) belongs in `config.yaml`, NOT `.env`.
+> [!CAUTION] 
+> **Security Audit Failure**
+> A codebase failing to adhere to these zero-fallback requirements will automatically fail security audits. Any PR or generation containing these patterns should be immediately rejected.
