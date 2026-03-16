@@ -1,0 +1,773 @@
+/* LookIn — Ported from Jiramntr/Johanna UI Standard v2.0 */
+
+@import url('vendor/caveat.css');
+@import url('vendor/inter.css');
+
+/* ── Design Tokens (from jiramntr base.css) ──────────────────── */
+:root {
+    --primary-bg: #2b2b2b;
+    --secondary-bg: #333333;
+    --card-bg: #363636;
+    --accent-color: #C42728;
+    --accent-rgb: 196, 39, 40;
+    --accent-hover: #A31F21;
+    --text-color: #f0e6d3;
+    --text-muted: #b8a990;
+    --border-color: #555;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --success-color: #26de81;
+    --danger-color: #eb4d4b;
+    --warning-color: #f39c12;
+    --info-color: #3498db;
+    --bg-hover: rgba(255, 255, 255, 0.1);
+    --radius: 12px;
+    --compact-height: 2.22rem;
+    --header-h: 50px;
+    --footer-h: 36px;
+    --font-hand: 'Caveat', cursive;
+    --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-ui);
+    background: var(--primary-bg);
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(40, 60, 40, 0.3) 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 50%, rgba(30, 50, 50, 0.2) 0%, transparent 70%);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+/* ── Header (from jiramntr .top-header) ──────────────────────── */
+header {
+    height: var(--header-h);
+    background: var(--secondary-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    color: var(--accent-color);
+}
+
+header h1 {
+    font-family: var(--font-hand);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.header-separator {
+    color: var(--border-color);
+    font-size: 1.2rem;
+    font-weight: 200;
+    margin: 0 4px;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Breadcrumb */
+#breadcrumb {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+#breadcrumb .crumb {
+    cursor: pointer;
+    color: var(--info-color);
+    transition: color 0.2s;
+    font-weight: 500;
+}
+
+#breadcrumb .crumb:hover {
+    color: var(--accent-color);
+}
+
+#breadcrumb .sep {
+    color: var(--text-muted);
+}
+
+#breadcrumb .current {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* ── Pill Buttons (from jiramntr .btn-loop / Johanna style) ──── */
+.btn-loop {
+    background: rgba(128, 128, 128, 0.08);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    height: 30px;
+    padding: 0 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    font-family: var(--font-ui);
+}
+
+.btn-loop:hover {
+    background: rgba(var(--accent-rgb), 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.1);
+}
+
+.btn-loop:active {
+    transform: translateY(0);
+}
+
+.btn-loop .icon {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* ── Layer Title (in header) ──────────────────────────────────── */
+#layer-title {
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* ── Diagram ─────────────────────────────────────────────────── */
+#diagram-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 24px;
+    margin-top: var(--header-h);
+    min-height: 400px;
+    overflow: auto;
+}
+
+#diagram {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: visible;
+}
+
+#diagram svg {
+    width: 100% !important;
+    max-height: 70vh;
+    height: auto !important;
+    overflow: visible;
+}
+
+/* ── Chalkboard SVG overrides ────────────────────────────────── */
+#diagram .nodeLabel {
+    font-family: 'Caveat', cursive !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    fill: #f0e6d3 !important;
+    color: #f0e6d3 !important;
+}
+
+#diagram .edgeLabel {
+    font-family: 'Caveat', cursive !important;
+    font-size: 14px !important;
+}
+
+/* Chalk-white arrow lines */
+#diagram .flowchart-link {
+    stroke: #999 !important;
+    stroke-width: 1.5px !important;
+}
+
+/* Chalk marker arrowheads */
+#diagram marker path {
+    fill: #999 !important;
+}
+
+/* ── 3 Node Types: drill / doc / static ────────────────────── */
+
+/* All interactive nodes: pointer cursor */
+#diagram .node-drill,
+#diagram .node-doc {
+    cursor: pointer !important;
+}
+
+/* DRILL nodes — golden border + shadow (click to go deeper) */
+#diagram .node-drill {
+    filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 4px rgba(243, 156, 18, 0.4));
+}
+
+#diagram .node-drill .nodeLabel {
+    font-weight: 700;
+}
+
+#diagram .node-drill:hover {
+    filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(243, 156, 18, 0.6)) brightness(1.3);
+}
+
+/* DOC nodes — blue border + shadow (click to view docs) */
+#diagram .node-doc {
+    filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 4px rgba(52, 152, 219, 0.4));
+}
+
+#diagram .node-doc .nodeLabel {
+    font-weight: 600;
+}
+
+#diagram .node-doc:hover {
+    filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(52, 152, 219, 0.6)) brightness(1.3);
+}
+
+/* STATIC nodes — default, no glow */
+
+/* ── Markdown Content in Panel ────────────────────────────────── */
+.md-content {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.md-content h1,
+.md-content h2,
+.md-content h3 {
+    font-family: var(--font-hand);
+    color: var(--accent-color);
+    margin: 12px 0 6px;
+}
+
+.md-content h1 {
+    font-size: 1.4rem;
+}
+
+.md-content h2 {
+    font-size: 1.2rem;
+}
+
+.md-content h3 {
+    font-size: 1rem;
+}
+
+.md-content p {
+    margin: 6px 0;
+}
+
+.md-content code {
+    background: var(--primary-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--warning-color);
+}
+
+.md-content pre {
+    background: var(--primary-bg);
+    padding: 10px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 8px 0;
+}
+
+.md-content pre code {
+    padding: 0;
+    background: none;
+    color: var(--text-color);
+}
+
+.md-content a {
+    color: var(--info-color);
+}
+
+.md-content ul,
+.md-content ol {
+    padding-left: 20px;
+    margin: 6px 0;
+}
+
+.md-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+}
+
+.md-content th,
+.md-content td {
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    font-size: 0.8rem;
+}
+
+.md-content th {
+    background: var(--primary-bg);
+    color: var(--text-muted);
+}
+
+/* ── Image Layer Mode (PNG presentation) ─────────────────────── */
+.image-layer {
+    position: relative;
+    display: inline-block;
+    max-width: 95%;
+    max-height: 85vh;
+}
+
+.image-layer img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.click-region {
+    position: absolute;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+/* Drill (default) — gold */
+.click-region.region-drill:hover {
+    border-color: rgba(243, 156, 18, 0.7);
+    background: rgba(243, 156, 18, 0.10);
+    box-shadow: 0 0 14px rgba(243, 156, 18, 0.35), inset 0 0 20px rgba(243, 156, 18, 0.05);
+}
+
+/* Doc — blue */
+.click-region.region-doc:hover {
+    border-color: rgba(52, 152, 219, 0.7);
+    background: rgba(52, 152, 219, 0.10);
+    box-shadow: 0 0 14px rgba(52, 152, 219, 0.35), inset 0 0 20px rgba(52, 152, 219, 0.05);
+}
+
+/* URL — green */
+.click-region.region-url:hover {
+    border-color: rgba(38, 222, 129, 0.7);
+    background: rgba(38, 222, 129, 0.10);
+    box-shadow: 0 0 14px rgba(38, 222, 129, 0.35), inset 0 0 20px rgba(38, 222, 129, 0.05);
+}
+
+/* Region label (visible on hover) */
+.region-label {
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary-bg);
+    color: var(--text-color);
+    font-family: var(--font-hand);
+    font-size: 0.85rem;
+    padding: 2px 10px;
+    border-radius: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+}
+
+.click-region:hover .region-label {
+    opacity: 1;
+}
+
+/* Click regions: invisible at rest, visible on hover only */
+
+/* ── TOC Sidebar (Johanna-inspired left panel) ───────────────── */
+.toc-sidebar {
+    position: fixed;
+    left: -320px;
+    top: 12px;
+    bottom: 48px;
+    width: 290px;
+    background: rgba(43, 43, 43, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.toc-sidebar.open {
+    left: 12px;
+}
+
+.toc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.toc-title {
+    font-family: var(--font-hand);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.toc-tree {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 10px;
+}
+
+/* Tree group header (Level 0/1 groupings) */
+.toc-group-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    margin-top: 6px;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.toc-group-header:hover {
+    color: var(--accent-color);
+    background: rgba(var(--accent-rgb), 0.06);
+}
+
+.toc-group-count {
+    background: rgba(var(--accent-rgb), 0.1);
+    color: var(--accent-color);
+    padding: 0px 6px;
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    border-radius: 6px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    margin-left: auto;
+    font-family: var(--font-ui);
+}
+
+.toc-group-chevron {
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.toc-group-items {
+    padding-left: 8px;
+    border-left: 2px solid rgba(var(--accent-rgb), 0.15);
+    margin-left: 14px;
+}
+
+.toc-group-items.collapsed {
+    display: none;
+}
+
+/* Individual layer items */
+.toc-item {
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    color: var(--text-color);
+    margin: 2px 0;
+    font-size: 0.85rem;
+}
+
+.toc-item:hover {
+    background: rgba(var(--accent-rgb), 0.08);
+    border-color: rgba(var(--accent-rgb), 0.2);
+    transform: translateX(4px);
+}
+
+.toc-item i {
+    font-size: 1rem;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.toc-item-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Active (current) layer */
+.toc-item.toc-active {
+    background: rgba(var(--accent-rgb), 0.1);
+    border-left: 3px solid var(--accent-color);
+    color: var(--accent-color);
+    font-weight: 600;
+    box-shadow: inset 0 0 10px rgba(var(--accent-rgb), 0.05);
+}
+
+.toc-item.toc-active i {
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+/* Scrollbar styling */
+.toc-tree::-webkit-scrollbar {
+    width: 4px;
+}
+
+.toc-tree::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.toc-tree::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ── Table Panel (from jiramntr card pattern) ────────────────── */
+#table-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 420px;
+    height: 100vh;
+    background: var(--secondary-bg);
+    border-left: 1px solid var(--border-color);
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+#table-panel.visible {
+    transform: translateX(0);
+}
+
+#table-panel.hidden {
+    transform: translateX(100%);
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background: var(--secondary-bg);
+}
+
+.panel-header h3 {
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+#table-content {
+    padding: 12px 16px;
+}
+
+#table-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+#table-content th {
+    text-align: left;
+    padding: 8px 10px;
+    background: var(--primary-bg);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#table-content td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#table-content tr:hover td {
+    background: rgba(var(--accent-rgb), 0.05);
+}
+
+.col-name {
+    color: var(--info-color);
+    font-weight: 600;
+}
+
+.col-type {
+    color: var(--warning-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.col-desc {
+    color: var(--text-muted);
+}
+
+/* ── Footer (johanna footer pattern) ─────────────────────────── */
+footer {
+    height: var(--footer-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 16px;
+    background: var(--secondary-bg);
+    border-top: 1px solid var(--border-color);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+}
+
+#source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.footer-sep {
+    opacity: 0.3;
+}
+
+.footer-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+}
+
+.footer-item i {
+    font-size: 0.85rem;
+}
+
+.hint {
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* ── Loading ─────────────────────────────────────────────────── */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ── Anchor Highlight (flash on scroll-to) ───────────────────── */
+@keyframes anchor-flash {
+    0% {
+        background: rgba(255, 193, 7, 0.35);
+    }
+
+    100% {
+        background: transparent;
+    }
+}
+
+.anchor-highlight {
+    animation: anchor-flash 1.5s ease-out;
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    #table-panel {
+        width: 100%;
+    }
+
+    header {
+        padding: 0 8px;
+    }
+
+    #layer-title {
+        font-size: 1.5rem;
+    }
+}

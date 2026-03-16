@@ -12,6 +12,9 @@ opt/**
 __pycache__/
 *.pyc
 
+# Dependencies
+node_modules/
+
 # IDE/System
 .vscode/
 .idea/
