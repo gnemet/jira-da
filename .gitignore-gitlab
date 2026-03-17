@@ -13,3 +13,15 @@
 - .agent/
 - _agents/
 - _agent/
+
+# ── Scripts ────────────────────────────────────────
+- scripts/
+- doc/
+- docs/
+- *.sh
+
+# ── Other ──────────────────────────────────────────
+- CLAUDE.md
+- .gitignore-gitlab
+- DEPLOYMENT.md
+- README.md
