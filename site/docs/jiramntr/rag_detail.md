@@ -6,7 +6,7 @@
 | Step | What happens |
 |---|---|
 | 1️⃣ | 📝 MCP `.md` files split into chunks |
-| 2️⃣ | 🧬 Each chunk embedded via Gemini `text-embedding-004` |
+| 2️⃣ | 🧬 Each chunk embedded via Ollama (1024d) or Gemini (3072d) |
 | 3️⃣ | 📦 Vectors stored in `meta.mcp_embeddings` (HNSW) |
 | 4️⃣ | 🗣️ User question embedded as vector |
 | 5️⃣ | 🔍 Cosine similarity finds top-K chunks |
@@ -21,9 +21,9 @@
 
 
 ## 🧬 Embedding Model
-- **Provider**: Google Gemini
-- **Model**: `text-embedding-004`
-- **Dimensions**: 768
+- **Providers**: Ollama / Google Gemini
+- **Models**: `snowflake-arctic-embed2` / `gemini-embedding-001`
+- **Dimensions**: 1024 / 3072
 - **Index**: HNSW (Hierarchical Navigable Small World)
 
 

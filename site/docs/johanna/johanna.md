@@ -51,6 +51,8 @@ Real-time WebSocket tracking of each pipeline stage:
 |---|---|---|
 | ✨ Gemini | Cloud (Paid) | Primary |
 | 🦙 Ollama | Local GPU | Alternative |
+| 🧠 Claude | Claude API | Alternative |
+| 🚀 Kimi | DeepSeek | Alternative |
 | 🔶 Mock | Testing | Built-in |
 
 Collection-based routing: each RAG collection can specify its own provider/model per stage (SQL, Repair, Chat).

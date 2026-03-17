@@ -23,11 +23,11 @@
 | Adapter | Status | Reads |
 |---------|--------|-------|
 | `postgres_dwh` | ✅ Active | JSON catalogs from `internal/catalog/` |
-| `confluence` | 🔲 Stub | Confluence REST API |
+| `confluence` | ✅ Active | Confluence REST API |
 | `documents` | 🔲 Stub | Local markdown/text files |
 | `pptx_source` | 🔲 Stub | PowerPoint slides |
 | `git_source` | 🔲 Stub | Git log + diff |
-| `jira_comments` | 🔲 Stub | Jira issue comments |
+| `jira_comments` | ✅ Active | Jira issue comments |
 | `bash_scripts` | 🔲 Stub | Shell scripts |
 
 ## Claude Agent — Self-Teaching System
@@ -48,7 +48,7 @@ Runs as a `systemd` timer on butalam, zero changes to aichat Go pipeline.
 ```
 mcp-forge outputs → embed/embedder.py → ragdb (rag.embeddings)
                          ↓
-            Ollama 768d + Gemini 3072d vectors
+            Ollama 1024d + Gemini 3072d vectors
 ```
 
 Triggered after any knowledge change: `python3 embed/embedder.py --knowledge-only`
